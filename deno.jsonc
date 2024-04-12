@@ -1,0 +1,10 @@
+{
+	"imports": {
+		"tools/": "./src/tools/"
+	},
+	"fmt": {
+		"useTabs": true,
+		"indentWidth": 4,
+		"singleQuote": true
+	}
+}
