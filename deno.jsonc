@@ -1,6 +1,6 @@
 {
 	"imports": {
-		"tools/": "./src/tools/"
+		"tools/": "./tools/"
 	},
 	"fmt": {
 		"useTabs": true,
