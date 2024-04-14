@@ -11,3 +11,7 @@ insert_final_newline = true
 
 [input]
 insert_final_newline = false
+
+[deno.lock]
+indent_style = space
+indent_size = 2
