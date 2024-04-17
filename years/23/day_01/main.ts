@@ -19,12 +19,12 @@ class SpelledDigits {
 function getAllDigitsWithSpelled(string: string) {
 	const allDigitsRe = new RegExp(
 		// Extend to include spelled digits
-		`\d|${SpelledDigits.spelledDigitRe.source}`,
+		`\\d|${SpelledDigits.spelledDigitRe.source}`,
 		'g',
 	);
 	const allDigits: number[] = [];
 	while (true) {
-		// Get the first match and update `allDigitsRe` state
+		// Get the next match and update the `allDigitsRe` state
 		const match = allDigitsRe.exec(string);
 		if (!isDefined(match)) break;
 		const { 0: d, index } = match;
@@ -36,7 +36,7 @@ function getAllDigitsWithSpelled(string: string) {
 	return allDigits;
 }
 
-// Thigns for both parts
+// Things for both parts
 function getCalibrationValue(ds: number[]) {
 	return Number(takeFirstLast(ds).join(''));
 }
