@@ -1,6 +1,7 @@
 #!/usr/bin/env -S deno run --allow-read
-import { takeFirstLast } from 'tools/take_first_last.ts';
 import { isDefined } from 'tools/is_defined.ts';
+import { takeFirstLast } from 'tools/take_first_last.ts';
+import { sum } from 'tools/sum.ts';
 
 // Things for the first part
 function getAllDigits(string: string) {
@@ -40,16 +41,15 @@ function getCalibrationValue(ds: number[]) {
 	return Number(takeFirstLast(ds).join(''));
 }
 // ---
-
 const input = await Deno.readTextFile('input');
 const inputLines = input.split('\n');
 
-const part1 = inputLines
-	.map((l) => getCalibrationValue(getAllDigits(l)))
-	.reduce((a, b) => a + b, 0);
+const part1 = sum(
+	...inputLines.map((l) => getCalibrationValue(getAllDigits(l))),
+);
 console.log('Part 1', part1);
 
-const part2 = inputLines
-	.map((l) => getCalibrationValue(getAllDigitsWithSpelled(l)))
-	.reduce((a, b) => a + b, 0);
+const part2 = sum(
+	...inputLines.map((l) => getCalibrationValue(getAllDigitsWithSpelled(l))),
+);
 console.log('Part 2', part2);
