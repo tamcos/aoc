@@ -22,7 +22,7 @@ function parseInputLine(inputLine: string) {
 	// Parse line like `Game id: 2 red, 10 green; 4 blue, ...`
 	const [gameKey, gameValue] = inputLine.split(': ');
 	const [, gameId] = gameKey.split(' ');
-	// Parse `gameValue` into `[[2, 'red,], [10, 'green'], ...]`
+	// Parse `gameValue` into `[[2, 'red'], [10, 'green'], ...]`
 	// We don't need to distinguish between the cube sets
 	const cubeSets = gameValue.split('; ').flatMap((cubeSet) =>
 		cubeSet.split(', ').map((item) => {
