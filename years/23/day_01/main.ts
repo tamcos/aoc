@@ -15,11 +15,10 @@ class SpelledDigits {
 		this.spelledDigitRe.source.split('|').map((k, i) => [k, 1 + i]),
 	);
 }
-
 function getAllDigitsWithSpelled(string: string) {
 	const allDigitsRe = new RegExp(
 		// Extend to include spelled digits
-		`\\d|${SpelledDigits.spelledDigitRe.source}`,
+		String.raw`\d|${SpelledDigits.spelledDigitRe.source}`,
 		'g',
 	);
 	const allDigits: number[] = [];
