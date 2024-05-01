@@ -1,6 +1,6 @@
-#!/usr/bin/env -S deno run --allow-read
+#!/usr/bin/env -S deno run --allow-read --allow-hrtime
 import { assert } from 'https://deno.land/std@0.222.1/assert/assert.ts';
-import { sum } from 'tools/sum.ts';
+import { add } from 'tools/add.ts';
 
 // Things for the second part
 function getFewestOfEachColor(gameValue: typeof parsedInputLines[number][1]) {
@@ -22,8 +22,9 @@ function parseInputLine(inputLine: string) {
 	// Parse line like `Game id: 2 red, 10 green; 4 blue, ...`
 	const [gameKey, gameValue] = inputLine.split(': ');
 	const [, gameId] = gameKey.split(' ');
-	// Parse `gameValue` into `[[2, 'red'], [10, 'green'], ...]`
-	// We don't need to distinguish between the cube sets
+	// Parse `gameValue` into [[2, 'red'], [10, 'green'], ...]
+	// We don't need to distinguish between the cube sets,
+	// so we use Array#flatMap
 	const cubeSets = gameValue.split('; ').flatMap((cubeSet) =>
 		cubeSet.split(', ').map((item) => {
 			const [v, k] = item.split(' ');
@@ -37,14 +38,14 @@ function parseInputLine(inputLine: string) {
 const input = await Deno.readTextFile('input');
 const parsedInputLines = input.split('\n').map(parseInputLine);
 
-const part1 = sum(
+const part1 = add(
 	...parsedInputLines
 		.filter(([, cubes]) => cubes.every(([k, v]) => v <= REQUIREMENTS[k]))
 		.map(([gameId]) => gameId),
 );
 console.log('Part 1', part1);
 
-const part2 = sum(
+const part2 = add(
 	...parsedInputLines
 		.map(([, cubes]) => getFewestOfEachColor(cubes))
 		.map(({ red, green, blue }) => red * green * blue),
